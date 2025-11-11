@@ -35,7 +35,6 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 
 [MIT License](LICENSE)
 
-<<<<<<< HEAD
 ## Package Structure
 
 - `integration` &mdash; Connects with external APIs, services, or platforms.
@@ -69,5 +68,3 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 
 [MIT License](LICENSE)
 
-=======
->>>>>>> de832343a1b24e43069d761722f0b70eb205e4a2
