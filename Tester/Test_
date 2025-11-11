@@ -1,0 +1,40 @@
+# tester/test_ontology_basic.py
+
+import os
+from ontology import OntologyManager
+
+def test_ontology_loading():
+    file_path = os.path.join(
+        os.path.dirname(__file__),
+        '..',
+        'Data',
+        'Ontology_test_data',
+        '1_sample_individual.owl'
+    )
+    manager = OntologyManager(file_path)
+    print("Ontology loaded successfully.")
+
+    # Test: Classes
+    classes = manager.get_classes()
+    print("Classes found:", [c.split('#')[-1] for c in classes])
+
+    # Test: Individuals of class 'Patient'
+    patients = manager.get_individuals('Patient')
+    print("Patients:", [p.split('#')[-1] for p in patients])
+
+    # Test: Object properties
+    obj_props = manager.get_object_properties()
+    print("Object Properties:", [p.split('#')[-1] for p in obj_props])
+
+    # Test: Properties of Patient1
+    patient1 = manager.get_individual_by_name('Patient1')
+    if patient1:
+        props = manager.get_individual_properties(patient1)
+        print("Properties for Patient1:")
+        for pred, obj in props:
+            print(f"  {pred.split('#')[-1]} -> {obj.split('#')[-1] if '#' in str(obj) else obj}")
+    else:
+        print("Patient1 not found.")
+
+if __name__ == "__main__":
+    test_ontology_loading()
