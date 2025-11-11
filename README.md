@@ -55,7 +55,7 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 
 2. Install dependencies (if any):
     ```bash
-    pip install -r requirements.txt
+    pip install -r req.txt
     ```
 
 3. Explore or develop within the respective sub-packages.
