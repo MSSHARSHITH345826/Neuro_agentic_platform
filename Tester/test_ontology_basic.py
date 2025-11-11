@@ -1,6 +1,9 @@
-# tester/test_ontology_basic.py
-
+import sys
 import os
+
+# Ensure the parent directory is in the Python path so 'ontology' can be imported
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from ontology import OntologyManager
 
 def test_ontology_loading():
@@ -16,15 +19,15 @@ def test_ontology_loading():
 
     # Test: Classes
     classes = manager.get_classes()
-    print("Classes found:", [c.split('#')[-1] for c in classes])
+    print("Classes found:", [str(c).split('#')[-1] for c in classes])
 
     # Test: Individuals of class 'Patient'
     patients = manager.get_individuals('Patient')
-    print("Patients:", [p.split('#')[-1] for p in patients])
+    print("Patients:", [str(p).split('#')[-1] for p in patients])
 
     # Test: Object properties
     obj_props = manager.get_object_properties()
-    print("Object Properties:", [p.split('#')[-1] for p in obj_props])
+    print("Object Properties:", [str(p).split('#')[-1] for p in obj_props])
 
     # Test: Properties of Patient1
     patient1 = manager.get_individual_by_name('Patient1')
@@ -32,7 +35,9 @@ def test_ontology_loading():
         props = manager.get_individual_properties(patient1)
         print("Properties for Patient1:")
         for pred, obj in props:
-            print(f"  {pred.split('#')[-1]} -> {obj.split('#')[-1] if '#' in str(obj) else obj}")
+            pred_name = str(pred).split('#')[-1] if '#' in str(pred) else str(pred)
+            obj_name = str(obj).split('#')[-1] if '#' in str(obj) else str(obj)
+            print(f"  {pred_name} -> {obj_name}")
     else:
         print("Patient1 not found.")
 

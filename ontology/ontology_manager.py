@@ -1,6 +1,6 @@
 # ontology/ontology_manager.py
 
-from rdflib import Graph, URIRef, Namespace
+from rdflib import Graph, Namespace
 from rdflib.namespace import RDF, OWL
 
 class OntologyManager:
@@ -19,7 +19,12 @@ class OntologyManager:
             class_uri = self.ns[class_name]
             return set(self.graph.subjects(RDF.type, class_uri))
         else:
-            return set(self.graph.subjects(RDF.type, OWL.NamedIndividual))
+            # Return all individuals (instances)
+            individuals = set()
+            for s, p, o in self.graph.triples((None, RDF.type, None)):
+                if not (o == OWL.Class or o == OWL.ObjectProperty or o == OWL.DatatypeProperty):
+                    individuals.add(s)
+            return individuals
 
     def get_object_properties(self):
         """Return all object properties."""
