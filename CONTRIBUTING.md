@@ -17,6 +17,7 @@ Thank you for your interest in contributing!
 
 - Keep code modular and place it in the relevant sub-package.
 - Add docstrings to public methods and classes.
+- Add new installs in req.txt
 - Write descriptive commit messages.
 
 ## Reporting Issues
